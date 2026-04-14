@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Age {
 
-    public static final String MESSAGE_CONSTRAINTS = "Age must be an integer from 1 to 99";
-    public static final String VALIDATION_REGEX = "^[1-9][0-9]?$";
+    public static final String MESSAGE_CONSTRAINTS = "Age must be an integer from 10 to 99";
+    public static final String VALIDATION_REGEX = "^[1-9][0-9]$";
     public final String value;
 
     /**

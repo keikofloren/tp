@@ -77,7 +77,7 @@ public class CommandTestUtil {
     public static final String AVAILABLE_DAY_DESC_BOB = " " + PREFIX_AVAILABLE_DAY + VALID_AVAILABLE_DAY_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_AGE_DESC = " " + PREFIX_AGE + "0"; // must be an integer between 1 and 99
+    public static final String INVALID_AGE_DESC = " " + PREFIX_AGE + "0"; // must be an integer between 10 and 99
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "12345678"; // must start with 8 or 9
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses

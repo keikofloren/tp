@@ -11,14 +11,14 @@ public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names must be 1 to 100 characters long, contain at least one letter, "
-                    + "and may only contain letters, spaces, apostrophes, and slashes (e.g. s/o, d/o).";
+                    + "and may only contain letters, spaces, apostrophes, hyphens, and slashes (e.g. s/o, d/o).";
 
     /*
      * Names must be between 1 and 100 characters long,
      * contain at least one letter, and may only contain
-     * letters, spaces, apostrophes, and forward slashes (to support s/o and d/o).
+     * letters, spaces, apostrophes, hyphens, and forward slashes (to support s/o and d/o).
      */
-    public static final String VALIDATION_REGEX = "^(?=.{1,100}$)(?=.*[A-Za-z])[A-Za-z'/ ]+$";
+    public static final String VALIDATION_REGEX = "^(?=.{1,100}$)(?=.*[A-Za-z])[-A-Za-z'/ ]+$";
 
     public final String fullName;
 

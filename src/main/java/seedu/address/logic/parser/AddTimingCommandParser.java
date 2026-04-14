@@ -36,7 +36,7 @@ public class AddTimingCommandParser implements Parser<AddTimingCommand> {
             "Invalid minutes: must be a non-negative integer\n" + AddTimingCommandParser.COMMAND_FORMAT;
 
     private static final String MESSAGE_INVALID_SECONDS =
-            "Invalid seconds: must be a number from 0 to <60\n" + AddTimingCommandParser.COMMAND_FORMAT;
+            "Invalid seconds: must be a number from 0 to 59.99\n" + AddTimingCommandParser.COMMAND_FORMAT;
 
     private static final String MESSAGE_INVALID_ZERO_TIME =
             "Invalid timing: total time must be greater than 0\n" + AddTimingCommandParser.COMMAND_FORMAT;
@@ -164,7 +164,7 @@ public class AddTimingCommandParser implements Parser<AddTimingCommand> {
     private double parseSeconds(String rawSeconds) throws ParseException {
         try {
             double seconds = Double.parseDouble(rawSeconds);
-            if (seconds < 0 || seconds >= 60) {
+            if (seconds < 0 || seconds > 59.99) {
                 throw new ParseException(MESSAGE_INVALID_SECONDS);
             }
             return seconds;

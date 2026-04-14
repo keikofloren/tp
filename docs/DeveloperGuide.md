@@ -7,12 +7,6 @@ toc: true
 * Table of Contents
 {:toc}
 
-## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
---------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -68,7 +62,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2526S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -85,7 +79,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2526S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -115,7 +109,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddAthleteCommandParser`, `DeleteAthleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2526S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -147,11 +141,6 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -234,213 +223,207 @@ Actor: Coach
 
 MSS:
 
-1. Coach inputs details of athlete to be added: `add n/John Tan a/17 p/91234567 e/johntan@example.com ad/NUS Hall d/02/10/2026 ec/Father 92345678`
-2. Pacebook validates all compulsory fields (name, age, phone, email, address, emergency contact, start date), checks that the phone number is unique, and rejects the command if the emergency contact does not follow the required `Relationship Phone` format.
-3. Pacebook saves the athlete profile to the data file.
-4. Pacebook displays success message with added athlete details in the message box: Added athlete: John Tan (Age: 17, Phone: 91234567, Email: johntan@example.com, Address: NUS Hall, Emergency Contact: Father 92345678, Start: 02/10/2026)
-5. Athlete details are now visible in the main window.
+1. Coach provides the athlete’s details.
+2. Pacebook adds the athlete profile.
+3. Pacebook shows the added athlete profile.
    Use case ends.
 
 Extensions:
 
 - **1a.** Pacebook detects invalid athlete details.
-    - **1a1.** Pacebook displays an error message indicating the validation error(s).
-    - **1a2.** Coach enters new data.
-    - Steps 1a1-1a2 are repeated until the data entered are correct.
+    - **1a1.** Pacebook informs the Coach that the details are invalid.
+    - **1a2.** Coach provides the athlete’s details again.
+    - Steps 1a1-1a2 are repeated until the details are valid.
     - Use case resumes from step 2.
 
 - **1b.** Pacebook detects that the phone number already exists.
-    - **1b1.** Pacebook displays an error message indicating the duplicate phone number.
-    - **1b2.** Coach enters new data.
-    - Steps 1b1-1b2 are repeated until the data entered are correct.
+    - **1b1.** Pacebook informs the Coach that the phone number already exists.
+    - **1b2.** Coach provides the athlete’s details again.
+    - Steps 1b1-1b2 are repeated until the details are valid.
     - Use case resumes from step 2.
 
 ---
 
 **UC2 - View Athlete Profile And Personal Bests**
 
-System: Pacebook
-Use case: UC2 - View Athlete Profile And Personal Bests
+System: Pacebook <br>
+Use case: UC2 - View Athlete Profile And Personal Bests <br>
 Actor: Coach
 
 MSS:
 
-1. Coach inputs the athlete index to view: `view 1`
-2. Pacebook retrieves the athlete profile corresponding to the index.
-3. Pacebook displays the athlete's profile (name, age, phone, email, address, emergency contact, start date) in the message box.
-4. Pacebook displays recorded run timings, or shows "No training records yet" if there are none.
+1. Coach requests to view an athlete profile.
+2. Pacebook shows the athlete’s profile and personal bests.
    Use case ends.
 
 Extensions:
 
-- **1a.** Pacebook detects an invalid athlete index.
-    - **1a1.** Pacebook displays an error message indicating the index error.
-    - **1a2.** Coach enters new index.
-    - Steps 1a1-1a2 are repeated until the index entered is correct.
+- **1a.** Pacebook detects that the specified athlete does not exist.
+    - **1a1.** Pacebook informs the Coach that the athlete cannot be found.
+    - **1a2.** Coach requests to view an athlete profile again.
+    - Steps 1a1-1a2 are repeated until a valid athlete is specified.
     - Use case resumes from step 2.
 
 ---
 
 **UC3 - Find Athlete By Keyword**
 
-System: Pacebook
-Use case: UC3 - Find Athlete By Keyword
+System: Pacebook <br>
+Use case: UC3 - Find Athlete By Keyword <br>
 Actor: Coach
 
 MSS:
 
-1. Coach specifies keyword(s) to find athletes: `find n/Irfan`
-2. Pacebook displays success message and number of matching athletes found in the message box.
-3. Pacebook displays all athlete entries which match the specified keyword(s) within the main window.
+1. Coach provides keyword(s) to search for athletes.
+2. Pacebook shows the athletes matching the keyword(s).
    Use case ends.
 
 Extensions:
 
-- **1a.** Pacebook detects invalid find parameters.
-    - **1a1.** Pacebook displays an error message indicating the parameter error(s).
-    - **1a2.** Coach enters new data.
-    - Steps 1a1-1a2 are repeated until the data entered are correct.
+- **1a.** Pacebook detects invalid search parameters.
+    - **1a1.** Pacebook informs the Coach that the search parameters are invalid.
+    - **1a2.** Coach provides the search parameters again.
+    - Steps 1a1-1a2 are repeated until the parameters are valid.
     - Use case resumes from step 2.
 
-- **2a.** No matching athlete entries found.
-    - **2a1.** Pacebook displays a message indicating no matching results found and no athletes will be listed in the main window.
+- **2a.** No athletes match the keyword(s).
+    - **2a1.** Pacebook informs the Coach that no matching athletes were found.
     - Use case ends.
 
 ---
 
 **UC4 - Delete Athlete Profile**
 
-System: Pacebook
-Use case: UC4 - Delete Athlete Profile
+System: Pacebook <br>
+Use case: UC4 - Delete Athlete Profile <br>
 Actor: Coach
 
 MSS:
 
-1. Coach inputs the athlete to be deleted: `del 2`
-2. Pacebook validates the index exists.
-3. Pacebook removes the athlete profile and all associated timing records.
-4. Pacebook saves the updated data file.
-5. Pacebook displays success message and deleted athlete's details in the message box.
-6. Updated athlete list is now visible in the main window. Deleted athlete is no longer visible.
+1. Coach requests to delete an athlete profile.
+2. Pacebook deletes the athlete profile.
+3. Pacebook shows that the athlete profile has been deleted.
    Use case ends.
 
 Extensions:
 
-- **1a.** Pacebook detects an invalid athlete index.
-    - **1a1.** Pacebook displays an error message indicating the index error.
-    - **1a2.** Coach enters new index.
-    - Steps 1a1-1a2 are repeated until the index entered is correct.
+- **1a.** Pacebook detects that the specified athlete does not exist.
+    - **1a1.** Pacebook informs the Coach that the athlete cannot be found.
+    - **1a2.** Coach requests to delete an athlete profile again.
+    - Steps 1a1-1a2 are repeated until a valid athlete is specified.
     - Use case resumes from step 2.
 
 ---
 
 **UC5 - Remove Athlete Profile After Reviewing Historical Data**
 
-System: Pacebook
-Use case: UC5 - Remove Athlete Profile After Reviewing Historical Data
+System: Pacebook <br>
+Use case: UC5 - Remove Athlete Profile After Reviewing Historical Data <br>
 Actor: Coach
 
 MSS:
 
-1. Coach uses the `view` command to review the athlete's full training history before removal: `view 2`
-2. Pacebook displays the athlete's full profile and training history.
-3. Coach uses the `del` command to remove the profile: `del 2`
-4. Pacebook removes the athlete from the active squad list.
-5. Pacebook displays success message and deleted athlete's details in the message box.
-6. Updated athlete list is now visible in the main window.
+1. Coach views the athlete profile and personal bests (UC2).
+2. Coach requests to remove the athlete from the active squad list.
+3. Pacebook removes the athlete profile.
+4. Pacebook shows that the athlete profile has been removed.
    Use case ends.
 
 Extensions:
 
-- **1a.** Pacebook detects an invalid athlete index for viewing.
-    - **1a1.** Pacebook displays an error message indicating the index error.
-    - **1a2.** Coach enters new index.
-    - Steps 1a1-1a2 are repeated until the index entered is correct.
+- **1a.** Pacebook detects that the specified athlete does not exist.
+    - **1a1.** Pacebook informs the Coach that the athlete cannot be found.
+    - **1a2.** Coach requests to view an athlete’s training history again.
+    - Steps 1a1-1a2 are repeated until a valid athlete is specified.
     - Use case resumes from step 2.
 
-- **3a.** Pacebook detects an invalid athlete index for deletion.
-    - **3a1.** Pacebook displays an error message indicating the index error.
-    - **3a2.** Coach enters new index.
-    - Steps 3a1-3a2 are repeated until the index entered is correct.
-    - Use case resumes from step 4.
+- **3a.** Pacebook detects that the specified athlete cannot be removed.
+    - **3a1.** Pacebook informs the Coach that the athlete cannot be removed.
+    - Use case ends.
 
 ---
 
 **UC6 - Add Run Timing Record**
 
-System: Pacebook
-Use case: UC6 - Add Run Timing Record
+System: Pacebook <br>
+Use case: UC6 - Add Run Timing Record <br>
 Actor: Coach
 
 MSS:
 
-1. Coach inputs athlete index, distance, minutes, and seconds: `addtime 1 dist/2.4km min/10 sec/30`
-2. Pacebook validates the index exists, the distance is valid, minutes/seconds are valid, and total time > 0.
-3. Pacebook adds the timing record to the athlete's profile.
-4. Pacebook updates the athlete's personal best for that distance if the new timing is the best.
-5. Pacebook displays success message in the message box, e.g.: Added timing for John Tan: 2.4km in 10min 30s
-6. If personal best changed, Pacebook also shows: New personal best for 2.4km: 10min 30s
+1. Coach provides a run timing record for an athlete.
+2. Pacebook adds the run timing record to the athlete profile.
+3. Pacebook shows that the run timing record has been added.
+4. Pacebook updates and shows the athlete’s personal best if applicable.
    Use case ends.
 
 Extensions:
 
-- **1a.** Pacebook detects invalid timing details (invalid index, distance, minutes, seconds, or total time ≤ 0).
-    - **1a1.** Pacebook displays an error message indicating the validation error(s).
-    - **1a2.** Coach enters new data.
-    - Steps 1a1-1a2 are repeated until the data entered are correct.
+- **1a.** Pacebook detects invalid timing details.
+    - **1a1.** Pacebook informs the Coach that the timing details are invalid.
+    - **1a2.** Coach provides the timing details again.
+    - Steps 1a1-1a2 are repeated until the details are valid.
+    - Use case resumes from step 2.
+
+- **1b.** Pacebook detects that the specified athlete does not exist.
+    - **1b1.** Pacebook informs the Coach that the athlete cannot be found.
+    - **1b2.** Coach provides the timing details again.
+    - Steps 1b1-1b2 are repeated until a valid athlete is specified.
     - Use case resumes from step 2.
 
 ---
 
 **UC7 - Delete Run Timing Record**
 
-System: Pacebook
-Use case: UC7 - Delete Run Timing Record
+System: Pacebook <br>
+Use case: UC7 - Delete Run Timing Record <br>
 Actor: Coach
 
 MSS:
 
-1. Coach inputs the athlete index and timing record index to be deleted: `deltime 1 3`
-2. Pacebook validates the athlete index exists and the timing record index exists for that athlete.
-3. Pacebook deletes the selected timing record.
-4. Pacebook recalculates the personal best for that distance if the deleted record affected it.
-5. Pacebook saves the updated data file.
-6. Pacebook displays success message and deleted timing details in the message box, e.g.: Deleted timing for John Tan: 2.4km in 10min 30s
-7. If personal best changed, Pacebook also shows: New personal best for 2.4km: 10min 45s
-8. Updated athlete list is now visible in the main window.
+1. Coach requests to delete a run timing record for an athlete.
+2. Pacebook deletes the run timing record.
+3. Pacebook shows that the run timing record has been deleted.
+4. Pacebook updates and shows the athlete’s personal best if applicable.
    Use case ends.
 
 Extensions:
 
-- **1a.** Pacebook detects an invalid athlete index or timing record index.
-    - **1a1.** Pacebook displays an error message indicating the index error(s).
-    - **1a2.** Coach enters new index(es).
-    - Steps 1a1-1a2 are repeated until the index(es) entered are correct.
+- **1a.** Pacebook detects that the specified athlete does not exist.
+    - **1a1.** Pacebook informs the Coach that the athlete cannot be found.
+    - **1a2.** Coach requests to delete a run timing record again.
+    - Steps 1a1-1a2 are repeated until a valid athlete is specified.
+    - Use case resumes from step 2.
+
+- **1b.** Pacebook detects that the specified timing record does not exist.
+    - **1b1.** Pacebook informs the Coach that the timing record cannot be found.
+    - **1b2.** Coach requests to delete a run timing record again.
+    - Steps 1b1-1b2 are repeated until a valid timing record is specified.
     - Use case resumes from step 2.
 
 **UC8 - Find Athlete by Name, Phone Number, Tag or Available Day**
 
-System: Pacebook
-Use Case: UC8 - Find Athlete by Tags or Availability
+System: Pacebook <br>
+Use Case: UC8 - Find Athlete by Tags or Availability <br>
 Actor: Coach
 
 MSS:
-1. Coach specifies tags or availability to find athletes:
-2. Pacebook checks if the parameters are valid inputs.
-3. Pacebook displays the number of matching athletes found in a success message.
-4. Pacebook retrieves and displays all athlete entries that match the specified keywords in the main window.<br>
+
+1. Coach provides search criteria.
+2. Pacebook shows the athletes matching the search criteria.
    Use case ends.
 
 Extensions:
 
-- 2a. Pacebook detects invalid find parameters.<br>
-    - **2a1.** Pacebook displays an error message indicating the invalid parameter(s).<br>
-    - **2a2.** Coach enters new data.<br>
-    - Steps 2a1-2a2 are repeated until the parameters are correct.<br>
-      Use case resumes from step 3.<br><br>
+- **1a.** Pacebook detects invalid search parameters.
+    - **1a1.** Pacebook informs the Coach that the search parameters are invalid.
+    - **1a2.** Coach provides the search parameters again.
+    - Steps 1a1-1a2 are repeated until the parameters are valid.
+    - Use case resumes from step 2.
 
-- 3a. No matching athlete entries found.<br>
-    - **3a1.** Pacebook displays a message indicating no matching results and no athletes will be listed.<br>
+- **2a.** No athletes match the search criteria.
+    - **2a1.** Pacebook informs the Coach that no matching athletes were found.
+    - Use case ends.
 
 **UC9 - Sort Athletes by Personal Best or Name**
 
@@ -449,19 +432,19 @@ Use Case: UC9 - Sort Athletes by Personal Best or Name<br>
 Actor: Coach
 
 MSS:
-1. Coach specifies the field and order for sorting. If sorting by personal best, the coach also specifies the event distance.
-2. Pacebook checks if the specified sorting criteria are valid
-3. Pacebook sorts the displayed athlete list based on the specified criteria.
-4. Pacebook displays the sorted athlete list in the main window.<br>
+
+1. Coach specifies the sorting criteria.
+2. Pacebook sorts the athlete list according to the specified criteria.
+3. Pacebook shows the sorted athlete list.
    Use case ends.
 
 Extensions:
 
-- 2a. Pacebook detects invalid sorting parameters.
-    - **2a1.** Pacebook displays an error message indicating the invalid sorting field or order.
-    - **2a2.** Coach enters new data.
-      Steps 2a1-2a2 are repeated until the sorting parameters are correct. <br>
-      Use case resumes from step 2.
+- **1a.** Pacebook detects invalid sorting parameters.
+    - **1a1.** Pacebook informs the Coach that the sorting parameters are invalid.
+    - **1a2.** Coach specifies the sorting criteria again.
+    - Steps 1a1-1a2 are repeated until the parameters are valid.
+    - Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
@@ -575,8 +558,6 @@ Sample `addressbook.json`:
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Listing all athletes
 1. Viewing all the athletes in Pacebook while the address book is empty:
 
@@ -685,7 +666,7 @@ Sample `addressbook.json`:
 1. Editing an athlete at a valid index with valid format when all persons are being shown
     1. Prerequisites: List all athlete using the `list` command before starting each test case.
 
-    1. Test case: `edit 3 n/Lucas Tan a/21 p/91234567 e/lucas.tan@example.com ad/31 Serangoon North Ave 4 ec/Father 92345678 d/15/02/2024 t/teamB`
+    1. Test case: `edit 3 n/Lucas Tan a/21 p/91234567 e/lucas.tan@example.com ad/31 Serangoon North Ave 4 ec/Father 92345678 d/15/02/2024 ta/teamB`
 
        Expected: The following should be displayed in the result panel:
        ```Edited Person: Muhammad Irfan Khan; Age: 25; Phone: 92345678; Email: muhammad.irfan.khan@example.com; Address: 12 Tampines Street 82, #11-03; Emergency Contact: Mother 91234567; Start Date: 01/07/2023; Tags: [marathon][teamB]```
@@ -694,7 +675,7 @@ Sample `addressbook.json`:
 1. Editing an athlete at a valid index with valid format when only one person is being shown
     1. Prerequisites: Find a single athlete to display on the person list panel using the find command. If using the addressbook.json sample above, run `find n/Lucas`
 
-    1. Test case: `edit 1 n/Lucas Tan a/21 p/91234567 e/lucas.tan@example.com ad/31 Serangoon North Ave 4 ec/Father 92345678 d/15/02/2024 t/teamB`
+    1. Test case: `edit 1 n/Lucas Tan a/21 p/91234567 e/lucas.tan@example.com ad/31 Serangoon North Ave 4 ec/Father 92345678 d/15/02/2024 ta/teamB`
 
        Expected: The following should be displayed in the result panel:
        `Edited Person: Lucas Tan; Age: 21; Phone: 91234567; Email: lucas.tan@example.com; Address: 31 Serangoon North Ave 4; Emergency Contact: Father 92345678; Start Date: 15/02/2024; Tags: [teamB]`
@@ -706,7 +687,7 @@ Sample `addressbook.json`:
 2. Editing an athlete with invalid format when all athletes are displayed
     1. Prerequisites: List all athlete using the `list` command
 
-    1. Test case: `edit 1 n/Lucas Tan a/21 p/9123 e/lucas.tan@example.com ad/31 Serangoon North Ave 4 ec/Father 92345678 d/15/02/2024 t/teamB`
+    1. Test case: `edit 1 n/Lucas Tan a/21 p/9123 e/lucas.tan@example.com ad/31 Serangoon North Ave 4 ec/Father 92345678 d/15/02/2024 ta/teamB`
 
        Expected: The following should be displayed in the result panel:
        `Phone number must be exactly 8 digits and start with 8 or 9 (e.g. 91234567).`
@@ -727,7 +708,7 @@ Sample `addressbook.json`:
     1. Prerequisites: List all athletes using the 'list' command.
 
     1. Test case: Enter a negative index:
-       `edit -1 n/Lucas Tan a/21 p/91234567 e/lucas.tan@example.com ad/31 Serangoon North Ave 4 ec/Father 92345678 d/15/02/2024 t/teamB`
+       `edit -1 n/Lucas Tan a/21 p/91234567 e/lucas.tan@example.com ad/31 Serangoon North Ave 4 ec/Father 92345678 d/15/02/2024 ta/teamB`
 
        Expected: The following error message should be displayed in the result display:
        ```
@@ -738,7 +719,7 @@ Sample `addressbook.json`:
        ```
 
     1. Test case: Enter an index larger than the index of the last athlete in the person display list. If using the addressbook.json sample:
-       `edit 4 n/Lucas Tan a/21 p/91234567 e/lucas.tan@example.com ad/31 Serangoon North Ave 4 ec/Father 92345678 d/15/02/2024 t/teamB`
+       `edit 4 n/Lucas Tan a/21 p/91234567 e/lucas.tan@example.com ad/31 Serangoon North Ave 4 ec/Father 92345678 d/15/02/2024 ta/teamB`
 
        Expected: The following error message should be displayed in the result display:
        ```
@@ -1274,21 +1255,34 @@ Expected: The result display should display number of persons listed.
 
 2. Sorting by PB (Personal Best)
     1. Sort ascending
-       Test case:
-       Expected:
+       Test case: `sort by/pb dist/2.4km ord/asc`
+       Expected: The list of athletes is sorted by their personal best 2.4 km time in ascending order (fastest at the top). Athletes with no recorded 2.4 km timings appear at the bottom.
+       Expected: The following success message should be displayed in the result display:
+       `Sorted athletes by personal best for 2.4km in ascending order.`
 
     2. Sort descending
-       Test case:
-       Expected:
-
+       Test case: `sort by/pb dist/2.4km ord/desc`
+       Expected: The list of athletes is sorted by their personal best 2.4 km time in descending order (slowest at the top). Athletes with no recorded 2.4 km timings appear at the bottom.
+       Expected: The following success message should be displayed in the result display:
+       `Sorted athletes by personal best for 2.4km in descending order.`
 
 2. Sorting using invalid distance field
-    1. Test case:
-       Expected:
+    1. Test case: `sort by/pb dist/100m ord/asc`
+       Expected: The following error message should be displayed in the result display:
+       ```
+       Invalid value for dist/
+       Supported distances: 400m, 2.4km, 10km, 42km
+       Example: sort by/pb dist/2.4km ord/asc
+       ```
 
 2. Sorting using invalid order field
     1. Test case: `sort by/pb ord/asdf`
-       Expected:
+       Expected: The following error message should be displayed in the result display:
+       ```
+       Invalid value for ord/
+       Supported orders: asc, desc
+       Example: sort by/name ord/desc
+       ```
 
 
 ### Clear Pacebook's address book
@@ -1354,12 +1348,3 @@ Expected: The result display should display number of persons listed.
 
     1. Test case: `exit`
        Expected: The addressbook.json should have Aryan Lim in it, with his personal information and 3 run records
-
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_

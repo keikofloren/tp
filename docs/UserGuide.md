@@ -36,7 +36,7 @@ You do not need to know how to program — just install it once using the links 
    - **Mac:** [Java installation guide for Mac](https://se-education.org/guides/tutorials/javaInstallationMac.html)
    - **Linux:** [Java installation guide for Linux](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
 
-./g2. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103T-W14-4/tp/releases).
+2. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103T-W14-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Pacebook.
 
@@ -122,7 +122,7 @@ These needs are built around the pace and demands of a real club coaching workfl
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are values you need to provide.
-  For example, in `addathlete n/NAME`, `NAME` should be replaced with the athlete’s actual name, such as `addathlete n/John Doe`.
+  For example, in `add n/NAME`, `NAME` should be replaced with the athlete’s actual name, such as `add n/John Doe`.
 
 * Items in square brackets are optional.
   For example, `n/NAME [t/TAG]` can be used as `n/John Doe t/sprinter` or just `n/John Doe`.
@@ -148,6 +148,7 @@ Format: `add n/NAME a/AGE p/PHONE e/EMAIL ad/ADDRESS d/START_DATE ec/EMERGENCY_C
 Example:
 * A new sprinter joins your team A after the open trial session:
   * `add n/Sarah Tan a/24 p/91234567 e/sarah.tan@email.com ad/Blk 12 Jurong West Ave 1, #05-12 d/01/04/2025 ec/Mother 91234567 t/sprinter t/teamA`
+    ![AddCommand](images/AddCommand.png)
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tips:**
 
@@ -160,7 +161,7 @@ Example:
 </div>
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
-Duplicate athletes may be rejected if an athlete with the **same name and phone number** already exists in Pacebook.
+Duplicate athletes may be rejected if an athlete with the **same phone number** already exists in Pacebook.
 </div>
 
 <div markdown="block" class="alert alert-success">✅ **Expected output:**
@@ -181,6 +182,8 @@ Example:
 * Sarah updates her contact number before the new training block:
   * `find n/Sarah Tan`
   * `edit 1 p/98765432`
+  ![EditCommand](images/EditCommand.png)
+
 * After promoting a runner to your competitive team mid-season:
   * `find n/Marcus Lim`
   * `edit 1 ta/teamA ta/competitive`
@@ -223,6 +226,7 @@ Format: `find [n/KEYWORD] [p/PHONE_NUMBER] [t/TAG]… [av/AVAILABLE_DAY]…`
 Examples:
 * You need to contact all sprinters before Saturday's time trial:
   * `find t/sprinter`
+  ![FindCommand](images/FindCommand.png)
 * You are filling a relay slot and need a teamA runner available on Tuesdays:
   * `find t/teamA av/Tue`
 * A parent calls in and you only remember the runner's first name:
@@ -261,6 +265,7 @@ Format: `list`
 Example:
 * Pulling up the full roster to confirm who is registered as a trainee under you:
   * `list`
+  ![ListCommand](images/ListCommand.png)
 
 <div markdown="block" class="alert alert-success">✅ **Expected output:**
 
@@ -281,6 +286,9 @@ Sorts the displayed athlete list by the specified field.
 Format: `sort by/FIELD [dist/DISTANCE] [ord/ORDER]`
 
 Examples:
+* Identify who needs the most improvement before the next fitness test:
+  * `sort by/pb dist/400m ord/desc`
+    ![SortCommand](images/SortCommand.png)
 * Before selecting runners for the inter-club competition, rank the
   team by their fastest 2.4km timing:
   * `sort by/pb dist/2.4km`
@@ -288,8 +296,6 @@ Examples:
   full roster for attendance-taking:
   * `find t/teamA`
   * `sort by/name`
-* Identify who needs the most improvement before the next fitness test:
-  * `sort by/pb dist/400m ord/desc`
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tips:**
 
@@ -333,10 +339,11 @@ Format: `view INDEX`
 * Displays the athlete at the specified `INDEX`.
 
 Example:
-* Before setting Marcus's target pace for the upcoming 10km race,
+* Before setting Bernice's target pace for the upcoming 10km race,
   review his full timing history:
-  * `find n/Marcus Lim`
+  * `find n/Bernice Yu`
   * `view 1`
+  ![ViewCommand.png](images/ViewCommand.png)
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tips:**
 
@@ -364,6 +371,7 @@ Examples:
 * After today's 2.4km fitness test, log Sarah's result:
   * `find n/Sarah Tan`
   * `addtime 1 dist/2.4km min/11 sec/42`
+  ![AddTimeCommand](images/AddTimeCommand.png)
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tips:**
 
@@ -402,8 +410,9 @@ Format: `del INDEX`
 
 Example:
 * A runner has moved overseas and officially left the club:
-  * `find n/Jake Wong`
+  * `find n/Charlotte Oliveiro`
   * `del 1`
+  ![DeleteCommand](images/DeleteCommand.png)
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tips:**
 
@@ -437,6 +446,7 @@ Example:
   * `find n/Sarah Tan`
   * `view 1`
   * `deltime 1 1`
+  ![DeleteTimeCommand](images/DeleteTimeCommand.png)
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tips:**
 
@@ -468,6 +478,7 @@ Example:
 * At the start of a new season, you are onboarding a completely
   new squad and need to wipe the previous cohort's data:
   * `clear`
+  ![ClearCommand.png](images/ClearCommand.png)
 
 <div markdown="block" class="alert alert-danger">⚠️ **Warning:**
 
@@ -492,6 +503,7 @@ Example:
 Opens the help window.
 
 Format: `help`
+![HelpCommand.png](images/HelpCommand.png)
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tips:**
 

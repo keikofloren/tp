@@ -230,8 +230,13 @@ public class AddAthleteCommandParserTest {
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + START_DATE_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
-        // invalid age
+        // invalid age: 0
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_AGE_DESC + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + START_DATE_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Age.MESSAGE_CONSTRAINTS);
+
+        // invalid age: single-digit (below minimum of 10)
+        assertParseFailure(parser, NAME_DESC_BOB + " " + PREFIX_AGE + "9" + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + EMERGENCY_CONTACT_DESC_BOB + START_DATE_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Age.MESSAGE_CONSTRAINTS);
 

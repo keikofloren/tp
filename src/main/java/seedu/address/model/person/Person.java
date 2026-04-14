@@ -30,12 +30,6 @@ public class Person {
     private final Phone phone;
     private final Email email;
 
-    /**
-     * Stores the best recorded run time for this athlete in seconds.
-     * Initialized to {@code Integer.MAX_VALUE} when no timing has been recorded.
-     */
-    private int bestTime;
-
     /** Additional data fields */
     private final Address address;
     private final EmergencyContact emergencyContact;
@@ -75,7 +69,6 @@ public class Person {
         this.startDate = startDate;
         this.tags.addAll(tags);
         this.availableDays.addAll(availableDays);
-        this.bestTime = Integer.MAX_VALUE;
     }
 
     /**
@@ -222,22 +215,7 @@ public class Person {
     }
 
     /**
-     * Returns the fastest recorded timing across all stored run timings.
-     *
-     * @return Best time in seconds, or {@code Double.MAX_VALUE} if no timings exist.
-     */
-    public double getBestTime() {
-        double bestTime = Double.MAX_VALUE;
-        for (RunTiming time : runTimings) {
-            if (time.getTotalSeconds() < bestTime) {
-                bestTime = time.getTotalSeconds();
-            }
-        }
-        return bestTime;
-    }
-
-    /**
-     * Returns true if both persons have the same name and phone number.
+     * Returns true if both persons have the same phone number.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -246,7 +224,6 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone());
     }
 
@@ -301,5 +278,4 @@ public class Person {
                 .add("availableDays", availableDays)
                 .toString();
     }
-
 }

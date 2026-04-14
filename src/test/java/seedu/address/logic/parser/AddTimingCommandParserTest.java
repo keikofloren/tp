@@ -138,18 +138,34 @@ public class AddTimingCommandParserTest {
     public void parse_invalidSeconds_failure() {
         // negative seconds
         assertParseFailure(parser, "1 dist/2.4km min/10 sec/-1",
-                "Invalid seconds: must be a number from 0 to <60\n"
+                "Invalid seconds: must be a number from 0 to 59.99\n"
                         + "Correct command format: addtime INDEX dist/DISTANCE min/MINUTES sec/SECONDS");
 
         // seconds out of range
         assertParseFailure(parser, "1 dist/2.4km min/10 sec/60",
-                "Invalid seconds: must be a number from 0 to <60\n"
+                "Invalid seconds: must be a number from 0 to 59.99\n"
                         + "Correct command format: addtime INDEX dist/DISTANCE min/MINUTES sec/SECONDS");
 
         // non-numeric seconds
         assertParseFailure(parser, "1 dist/2.4km min/10 sec/abc",
-                "Invalid seconds: must be a number from 0 to <60\n"
+                "Invalid seconds: must be a number from 0 to 59.99\n"
                         + "Correct command format: addtime INDEX dist/DISTANCE min/MINUTES sec/SECONDS");
+
+        // seconds exceed 59.99 (e.g. 59.999)
+        assertParseFailure(parser, "1 dist/2.4km min/10 sec/59.999",
+                "Invalid seconds: must be a number from 0 to 59.99\n"
+                        + "Correct command format: addtime INDEX dist/DISTANCE min/MINUTES sec/SECONDS");
+    }
+
+    /**
+     * Tests that 59.99 seconds is accepted as the boundary value.
+     */
+    @Test
+    public void parse_secondsBoundary_success() {
+        assertDoesNotThrow(() -> {
+            AddTimingCommand command = parser.parse("1 dist/2.4km min/10 sec/59.99");
+            assertTrue(command instanceof AddTimingCommand);
+        });
     }
 
     /**

@@ -29,12 +29,15 @@ public class NameTest {
         assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName("---")); // hyphens only, no letters
 
         // valid name
         assertTrue(Name.isValidName("peter jack")); // alphabets only
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("Ravi s/o Kumar")); // s/o in name
         assertTrue(Name.isValidName("Priya d/o Nair")); // d/o in name
+        assertTrue(Name.isValidName("Jean-Paul Tan")); // hyphenated first name
+        assertTrue(Name.isValidName("Mary-Jane")); // hyphenated name
     }
 
     @Test

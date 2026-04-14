@@ -21,9 +21,9 @@ public class HelpCommand extends Command {
                     + "addtime       INDEX dist/DISTANCE min/MINUTES sec/SECONDS\n"
                     + "del           INDEX\n"
                     + "deltime       ATHLETE_INDEX TIMING_INDEX\n"
-                    + "edit          INDEX [n/NAME] [a/AGE] [p/PHONE] "
-                    + "[e/EMAIL] [ad/ADDRESS] [d/START_DATE] [t/TAG]...\n"
-                    + "find          KEYWORD [n/NAME] [p/PHONE] [t/TAG]... [av/AVAILABLE_DAY]...\n"
+                    + "edit          INDEX [n/NAME] [a/AGE] [p/PHONE] [e/EMAIL] [ad/ADDRESS] "
+                    + "[ec/EMERGENCY_CONTACT] [d/START_DATE] [ta/TAG]... [td/TAG]... [av/AVAILABLE_DAY]...\n"
+                    + "find          [n/NAME]... [p/PHONE]... [t/TAG]... [av/AVAILABLE_DAY]...\n"
                     + "sort          by/FIELD [ord/ORDER]   (fields: name, pb  |  orders: asc, desc)\n"
                     + "view          INDEX\n"
                     + "list\n"
@@ -34,6 +34,6 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, false, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 }
