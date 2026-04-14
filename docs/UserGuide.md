@@ -269,7 +269,7 @@ All athletes currently stored in Pacebook are displayed.
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tips:**
 
-Use `list` before commands like `view`, `edit`, and `delete` if you want to confirm the current athlete indices.
+Use `list` before commands like `view`, `edit`, and `del` if you want to confirm the current athlete indices.
 </div>
 
 ---
